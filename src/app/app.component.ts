@@ -2,11 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'pz-root',
-  template: `
-    <p>
-      app Works!
-    </p>
-  `,
+  template: `<router-outlet></router-outlet>`,
   styles: []
 })
 export class AppComponent {

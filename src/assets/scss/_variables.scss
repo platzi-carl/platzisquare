@@ -1,0 +1,7 @@
+// Importo bootstrap 4 en este archivo para poder utilizar 
+// las funciones de bootstrap en otros componentes de la aplicación.
+@import '../../../node_modules/bootstrap/scss/bootstrap';
+@import './flat-colors';
+
+
+$primary_color:#24292e;
