@@ -5,15 +5,9 @@ import { CommonModule } from '@angular/common';
 
 // COMPONENTS
 import { NotfoundComponent } from './components/notfound/notfound.component';
-import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
-import { AppRoutingModule } from '../app-routing.module';
-import { LayoutComponent } from './components/layout/layout.component';
-import { AlertComponent } from './../shared/components/alert/alert.component';
 
 // SERVICES
 import { AuthService } from './services/auth.service';
-import { AlertService } from '../shared/services/alert.service';
 
 // Firebase
 import { firebaseConfig } from '../../environments/firebase.config';
@@ -24,9 +18,6 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 @NgModule({
   imports: [
     BrowserModule,
-    FormsModule,
-    CommonModule,
-    AppRoutingModule,
     ReactiveFormsModule,
 
     AngularFireModule.initializeApp(firebaseConfig),
@@ -34,19 +25,15 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
     AngularFireAuthModule
   ],
   declarations: [
-    NotfoundComponent,
-    LoginComponent,
-    RegisterComponent,
-    LayoutComponent,
-    AlertComponent
+    NotfoundComponent
   ],
   providers: [
-    AuthService,
-    AlertService
+    AuthService
   ],
   exports: [
-    LayoutComponent,
-    AppRoutingModule
+    AngularFireModule,
+    AngularFireDatabaseModule,
+    AngularFireAuthModule
   ]
 })
 export class CoreModule {

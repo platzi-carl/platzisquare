@@ -4,8 +4,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { AlertService } from './../../../shared/services/alert.service';
-import { AuthService } from '../../services/auth.service';
-import { FormValidation } from '../../models/User';
+import { AuthService } from '../../../core/services/auth.service';
+import { FormValidation } from '../../../core/models/User';
+
 
 @Component({
   selector: 'pz-register',

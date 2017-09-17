@@ -1,12 +1,12 @@
+import { Observable } from 'rxjs/Rx';
 import { AlertService } from '../../../shared/services/alert.service';
-import { error } from 'util';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validator, Validators } from '@angular/forms';
 
+import { User } from '../../../core/models/User';
+import { AuthService } from '../../../core/services/auth.service';
 
-import { AuthService } from '../../services/auth.service';
-import { User } from '../../models/User';
 
 @Component({
   selector: 'pz-login',
