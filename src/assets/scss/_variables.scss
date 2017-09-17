@@ -1,7 +1,20 @@
-// Importo bootstrap 4 en este archivo para poder utilizar 
+// Importo bootstrap 4 en este archivo para poder utilizar
 // las funciones de bootstrap en otros componentes de la aplicación.
 @import '../../../node_modules/bootstrap/scss/bootstrap';
 @import './flat-colors';
 
+@mixin placeholder {
+  ::-webkit-input-placeholder {@content}
+  :-moz-placeholder           {@content}
+  ::-moz-placeholder          {@content}
+  :-ms-input-placeholder      {@content}
+}
 
 $primary_color:#24292e;
+$colorfacebook: #345387;
+$colorfacebook-light: #4b6ea9;
+
+$colortwitter: #00c6e9;
+$colortwitter-light: #00d7fa;
+
+$green: #88B95D;

@@ -1,0 +1,177 @@
+@import "~assets/scss/_variables.scss";
+$fa-font-path: "../node_modules/font-awesome/fonts";
+@import "../node_modules/font-awesome/scss/font-awesome.scss";
+
+a {
+  color: $green;
+  &:hover{
+    color: darken($green, 10%);
+  }
+}
+
+.content {
+  padding-top: 20px;
+  padding-bottom:20px;
+}
+
+agm-map {
+  height: 300px;
+}
+
+// ======================= HEADER AND NAV STYLES ====================== //
+.Header {
+  background: $primary_color;
+  height: 52px;
+
+  &__brand {
+      color: $flat-alizarin;
+      position: relative;
+      min-width: 150px;
+
+      &-sub {
+          display: inline-block;
+          color: #fff;
+          padding: 0px 5px;
+          border-radius: 12px 0;
+          font-size: 12px;
+          background: $flat-pomegranate;
+          // transform: rotate(23deg);
+      }
+  }
+
+  .navbar {
+    z-index: 1;
+    background: $primary_color;
+
+
+
+    &-nav {
+      .nav
+      {
+        &-item {
+          &.active {
+            .nav-link {color: $green;}
+          }
+        }
+        &-link {
+          color:#fff;
+
+          &:hover {color: $green;cursor: pointer;}
+        }
+      }
+
+    }
+  }
+}
+
+// ======================= LOGIN AND REGISTER FORM ====================== //
+.Login, .Registro {
+  text-align: center;
+  color: $primary_color;
+
+  &-form {
+    min-width: 300px;
+    max-width: 320px;
+    margin: auto;
+  }
+  &__social {
+    color: $primary_color;
+  }
+
+  &__title {
+    color: $primary_color;
+  }
+
+  .btn {
+    border-radius: 2px;
+
+    &[disabled] {
+      cursor: not-allowed;
+      color: #CCCCCC;
+    }
+    &-primary {
+      &.btn-facebook {
+        background-color: $colorfacebook-light;
+        border-color: $colorfacebook;
+
+        &:hover {
+          background-color: $colorfacebook;
+        }
+      }
+
+      &.btn-twitter {
+        background-color: $colortwitter-light;
+        border-color: $colortwitter;
+
+        &:hover {
+          background-color: $colortwitter;
+        }
+      }
+
+      &.btn-green {
+        background-color: $green;
+        border-color: darken($green, 5%);
+        color: #fff;
+      }
+    }
+  }
+
+  .input-group {
+    .addon {
+      &-facebook {
+        background-color: $colorfacebook;
+        border: none;
+        border-radius: 2px 0px 0px 2px;
+        color: #fff;
+      }
+
+      &-twitter {
+        background-color: $colortwitter;
+        border: none;
+        border-radius: 2px 0px 0px 2px;
+        color: #fff;
+      }
+    }
+
+    .btn{
+      border-radius: 0px 2px 2px 0px;
+
+      &-facebook {
+        background-color: $colorfacebook-light;
+        color: #fff;
+        font-size: 15px;
+
+
+        &:hover {
+          background-color: darken($colorfacebook-light, 2%);
+        }
+      }
+
+      &-twitter{
+
+        background-color: $colortwitter-light;
+        color: #fff;
+        font-size: 15px;
+
+        &:hover {
+          background-color: darken($colortwitter-light, 2%);
+        }
+      }
+    }
+  }
+
+  .form-control {
+    background: none;
+    height: 40px;
+    border-radius: 2px;
+    box-shadow: none;
+    color: #8b9eb6;
+    padding: 3px;
+    @include placeholder {
+      color: green;
+    }
+  }
+}
+.Content {
+
+}
