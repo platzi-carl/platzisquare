@@ -19,7 +19,9 @@ export class AuthService {
     private router: Router,
     private afDB: AngularFireDatabase,
     private fb: FirebaseApp
-  ) {  }
+  ) {
+    this.isLogeed();
+  }
 
   public login = (user_data: User) => {
     return this.angularFireAuth.auth.signInWithEmailAndPassword(user_data.email, user_data.password);

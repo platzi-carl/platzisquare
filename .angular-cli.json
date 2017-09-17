@@ -22,7 +22,6 @@
         "styles.scss"
       ],
       "scripts": [
-        "../node_modules/jquery/dist/jquery.js",
         "../node_modules/lodash/lodash.js"
       ],
       "environmentSource": "environments/environment.ts",

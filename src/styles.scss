@@ -21,12 +21,16 @@ agm-map {
 // ======================= HEADER AND NAV STYLES ====================== //
 .Header {
   background: $primary_color;
-  height: 52px;
+  height: 50px;
+  position: relative;
+  z-index: 2;
 
   &__brand {
       color: $flat-alizarin;
       position: relative;
       min-width: 150px;
+
+      &:hover {text-decoration: none;}
 
       &-sub {
           display: inline-block;
@@ -38,12 +42,17 @@ agm-map {
           // transform: rotate(23deg);
       }
   }
+  .navbar-toggler {
+    z-index: 100;
+    color: $green;
+    background-color: darken($primary_color, 5%);
+    outline: none;
 
+    &:hover {cursor: pointer; }
+  }
   .navbar {
     z-index: 1;
-    background: $primary_color;
-
-
+    background: darken($primary_color, 5%);
 
     &-nav {
       .nav

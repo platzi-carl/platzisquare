@@ -15,6 +15,7 @@ import { FormValidation } from '../../../core/models/User';
 })
 export class RegisterComponent implements OnInit {
   user: FormGroup;
+  isLoading: boolean;
 
   constructor(
     private authService: AuthService,
@@ -24,7 +25,9 @@ export class RegisterComponent implements OnInit {
     this.createForm();
   }
 
-  ngOnInit() {  }
+  ngOnInit() {
+    this.isLoading = false;
+  }
 
   public createForm() {
     this.user = this.fb.group({
@@ -39,13 +42,16 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
+    this.isLoading = true;
     this.authService.regitro(this.user.value)
     .then((response) => {
       console.log(response);
       this.alertService.success('Gracias por registrarte en <strong>PlaziSquare</strong>!!!', true);
-      this.router.navigate(['/lugares']);
+      this.isLoading = false;
+      this.router.navigate(['/']);
     })
     .catch((error) => {
+      this.isLoading = false;
       this.alertService.danger(error.message, true);
       console.log(error.message);
     });

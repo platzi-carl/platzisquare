@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 
 // SERVICES
+import { AuthGuard } from './services/guard.service';
 import { AuthService } from './services/auth.service';
 
 // Firebase
@@ -28,7 +29,8 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
     NotfoundComponent
   ],
   providers: [
-    AuthService
+    AuthService,
+    AuthGuard
   ],
   exports: [
     AngularFireModule,

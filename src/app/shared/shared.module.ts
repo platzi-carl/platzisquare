@@ -8,8 +8,6 @@ import { AlertComponent } from './components/alert/alert.component';
 
 // SERVICES
 import { AlertService } from './services/alert.service';
-import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
   imports: [
@@ -17,13 +15,14 @@ import { RegisterComponent } from './components/register/register.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  declarations: [AlertComponent, LoginComponent, RegisterComponent],
+  declarations: [AlertComponent],
   providers: [AlertService],
   exports: [
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    CommonModule
+    CommonModule,
+    AlertComponent
   ]
 })
 export class SharedModule {
