@@ -5,11 +5,11 @@ import { Lugar } from '../../../core/models/Lugar';
 import { LugaresService } from '../../services/luegares.service';
 
 @Component({
-  selector: 'pz-app-lugares-list',
-  templateUrl: './lugares-list.component.html',
-  styleUrls: ['./lugares-list.component.css']
+  selector: 'pz-listado-lugares',
+  templateUrl: './listado.component.html',
+  styleUrls: ['./listado.component.scss']
 })
-export class LugaresListComponent implements OnInit {
+export class ListaLugaresComponent implements OnInit {
   lat: number;
   lng: number;
   lugares$: Lugar[];

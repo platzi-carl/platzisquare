@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
     selector: 'pz-lugares',
-    template: `<pz-app-lugares-list></pz-app-lugares-list>`
+    template: `<pz-listado-lugares></pz-listado-lugares>`
 })
 
 export class LugaresComponent implements OnInit {
