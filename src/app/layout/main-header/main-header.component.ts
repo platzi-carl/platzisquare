@@ -34,7 +34,7 @@ export class MainHeaderComponent implements OnInit {
         .logout()
         .then(() => {
           this.isLoggedIn = false;
-          this.router.navigate(['/login']);
+          this.router.navigate(['/']);
         })
         .catch(error => {
           console.log(error);

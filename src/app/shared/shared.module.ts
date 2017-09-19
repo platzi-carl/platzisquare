@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { AlertComponent } from './components/alert/alert.component';
 
 // SERVICES
+import { environment } from './../../environments/environment';
 import { AlertService } from './services/alert.service';
 
 @NgModule({

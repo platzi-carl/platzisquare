@@ -45,7 +45,6 @@ export class FormValidation {
          console.log('false');
          control.get('password_repeat').setErrors( {nomatch: true} );
      } else {
-         console.log('true');
          return null;
      }
   }
