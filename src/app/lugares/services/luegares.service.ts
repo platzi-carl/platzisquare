@@ -40,7 +40,7 @@ export class LugaresService {
   // ---------------------------------------------
   public obtenerGeoData(direccion) {
     direccion = `${direccion.calle},${direccion.ciudad}, ${direccion.pais}`;
-    return this.http.get<ItemsResponse>('http://maps.google.com/maps/api/geocode/json?address='+ direccion);
+    return this.http.get<ItemsResponse>(`http://maps.google.com/maps/api/geocode/json?address=${direccion}`);
   }
 
 }

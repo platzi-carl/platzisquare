@@ -1,4 +1,8 @@
+import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+
+import { Lugar } from '../../../core/models/Lugar';
+import { LugaresService } from '../../services/luegares.service';
 
 @Component({
   selector: 'pz-detalle-lugar',
@@ -7,9 +11,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetalleComponent implements OnInit {
 
-  constructor() { }
+  lugar: Lugar;
+  lat: number;
+  lng: number;
+
+  constructor(private route: ActivatedRoute, private lugaresServices: LugaresService) {   }
 
   ngOnInit() {
-  }
+    const id = this.route.snapshot.params['id'];
 
+    this.lugaresServices.getLugar(id)
+        .subscribe((lugar) => {
+
+          this.lugar  = lugar;
+          this.lat    = this.lugar.latitud;
+          this.lng    = this.lugar.longitud;
+        });
+  }
 }

@@ -10,7 +10,10 @@ export class Lugar {
     public longitud: number,
     public descripcion: string,
     public fechaCreado: Date,
-    public userId: string
+    public userId: string,
+    public ciudad: string,
+    public direccion: string,
+    public categoria: string
   ) {
   }
 
@@ -19,7 +22,7 @@ export class Lugar {
   }
 
   static fromJson({$key, nombre, distancia, isActive, isPremium, latitud,
-    longitud, descripcion, fechaCreado, userId }): Lugar {
+    longitud, descripcion, fechaCreado, userId, ciudad, direccion, categoria }): Lugar {
     return new Lugar(
       $key,
       nombre,
@@ -30,7 +33,10 @@ export class Lugar {
       longitud,
       descripcion,
       fechaCreado,
-      userId
+      userId,
+      ciudad,
+      direccion,
+      categoria
     );
   }
 }

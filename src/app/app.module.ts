@@ -19,6 +19,7 @@ import { NotfoundComponent } from './core/components/notfound/notfound.component
 // --------------------------------------------------------------------
 const routes: Routes = [
   { path: '', loadChildren: './layout/layout.module#LayoutModule'},
+  { path: 'admin', loadChildren: './admin/admin.module#AdminModule'},
   { path: '**', pathMatch: 'full', component: NotfoundComponent }
 ];
 
