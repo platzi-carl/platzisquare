@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Routes, RouterModule } from '@angular/router';
+import { CanActivate, RouterModule, Routes } from '@angular/router';
 
 import { AgmCoreModule } from '@agm/core';
 
 import { AuthGuard } from './../core/services/guard.service';
 import { environment } from '../../environments/environment';
 import { LugaresService } from './services/luegares.service';
+import { FormsModule } from '@angular/forms';
 
 import { LugaresComponent } from './lugares.component';
 import { ListaLugaresComponent } from './components/listado/listado.component';
@@ -25,6 +26,7 @@ const routes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     RouterModule.forChild(routes),
     AgmCoreModule.forRoot({
       apiKey: environment.MAP_KEY

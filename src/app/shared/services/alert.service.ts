@@ -45,6 +45,7 @@ export class AlertService {
   }
 
   alert(tipo: TipoAlert, mensaje: string, keepAfterRouteChange = false) {
+    this.clear();
     this.keepAfterRouteChange = keepAfterRouteChange;
     this.subject.next(<Alert>{ tipo: tipo, mensaje: mensaje });
   }
@@ -58,7 +59,7 @@ export class AlertService {
 export class Alert {
   tipo: TipoAlert;
   mensaje: string;
-  // autoclose: boolean;
+  autoclose: boolean;
 }
 
 export enum TipoAlert {

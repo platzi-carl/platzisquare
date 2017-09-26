@@ -1,3 +1,67 @@
-<p>
-  nuevo-lugar works!
-</p>
+<div class="content container">
+  <h2>Nuevo lugar</h2>
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="" class="label-control">Nombre del lugar</label>
+      <input type="text" placeholder="Nombre" class="form-control" name="nombre" [(ngModel)]="lugar.nombre">
+    </div>
+    <div class="form-group">
+      <label for="" class="label-control">Distancia</label>
+      <input type="number" placeholder="Distancia" class="form-control" name="distancia" [(ngModel)]="lugar.distancia">
+    </div>
+      <div class="form-group">
+        <label for="" class="label-control">Cercania</label>
+        <input type="number" placeholder="Cercania" class="form-control" name="cercania" [(ngModel)]="lugar.cercania">
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label for="" class="label-control">¿Activo?</label><br>
+                <label for="isActiveSi">
+                    Sí <input type="radio" id="isActiveSi" placeholder="Nombre" name="isActive" value="true" [(ngModel)]="lugar.isActive">
+                </label>
+                <label for="isActiveNo">
+                    No <input type="radio" id="isActiveNo" placeholder="Nombre" name="isActive" value="false" [(ngModel)]="lugar.isActive">
+                </label>
+              </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label for="" class="label-control">¿Es premium?</label><br>
+                <label for="isPremiumSi">
+                    Sí <input type="radio" placeholder="Nombre" id="isPremiumSi" name="isPremium" value="true" [(ngModel)]="lugar.isPremium">
+                </label>
+              <label for="isPremiumNo">
+                  No <input type="radio" placeholder="Nombre" id="isPremiumNo" name="isPremium" value="false" [(ngModel)]="lugar.isPremium">
+              </label>
+              </div>
+        </div>
+      </div>
+      <div class="form-group">
+          <label for="" class="label-control">Descripcion</label>
+          <textarea placeholder="Descripción" class="form-control" name="descripcion" [(ngModel)]="lugar.descripcion"></textarea>
+        </div>
+        <label>Datos Direccion</label>
+        <div class="form-group">
+          <label for="" class="label-control">Calle y Número</label>
+          <input type="text" placeholder="Cercania" class="form-control" name="calle y número" [(ngModel)]="lugar.direccion.calle">
+        </div>
+        <div class="form-group">
+          <label for="" class="label-control">Cercania</label>
+          <input type="text" placeholder="Ciudad" class="form-control" name="ciudad" [(ngModel)]="lugar.direccion.ciudad">
+        </div>
+        <div class="form-group">
+          <label for="" class="label-control">Cercania</label>
+          <input type="text" placeholder="Pais" class="form-control" name="pais" [(ngModel)]="lugar.direccion.pais">
+        </div>
+      <hr />
+    <div class="form-group">
+      <a class="btn btn-danger pull-left" routerLink="/" title="Cnacelar">
+        <i class="fa fa-remove"></i> Cancelar
+      </a>
+      <button type="submit" class="btn btn-success pull-right" type="submit">
+        <i class="fa fa-save"></i> Guardar lugar
+      </button>
+    </div>
+  </form>
+</div>

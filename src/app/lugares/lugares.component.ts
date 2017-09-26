@@ -17,8 +17,7 @@ export class LugaresComponent implements OnInit {
   query_url = '';
   lat       = 38.5374062;
   lng       = -0.147505;
-  limit     = 40;
-  // Nocturno: 4d4b7105d754a06376d81259, Comida: 4d4b7105d754a06374d81259
+  limit     = 30;
   catId     = '4d4b7105d754a06374d81259';
   url       = '';
   data: LugaresFs;
