@@ -7,6 +7,10 @@
 
 
 <div id="accordion" role="tablist">
+  <select>
+    <option value="value" *ngFor="let cat of categorias$">Selecciona una categoría</option>
+  </select>
+
   <div class="card mb-1" *ngFor="let cat of categorias$">
     <div class="card-header" role="tab" id="headingOne">
       <h5 class="mb-0">

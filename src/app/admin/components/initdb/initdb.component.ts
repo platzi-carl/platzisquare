@@ -11,7 +11,7 @@ import { Categoria, CategoriasResponse } from './models/categoria';
   styleUrls: ['./initdb.component.css']
 })
 export class InitdbComponent implements OnInit {
-  constructor(private fb: FormBuilder, private http: HttpClient) {}
+  constructor() {}
 
   ngOnInit() {}
 

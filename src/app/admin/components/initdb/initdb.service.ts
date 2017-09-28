@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
-import { CategoriasResponse } from './models/categoria';
+import { Categoria, CategoriasResponse } from './models/categoria';
 
 @Injectable()
 export class InitDbService {
@@ -24,6 +24,9 @@ export class InitDbService {
       fsq_lat: '38.5374062',
       fsq_lng: '-0.147505'
     };
+    this.init_config();
+
+    console.log(this.config);
 
     this.lugares_url = 'https://api.foursquare.com/v2/venues/search';
     this.categorias_url = 'https://api.foursquare.com/v2/venues/categories/';
@@ -37,6 +40,15 @@ export class InitDbService {
   getCategories(): Observable<CategoriasResponse> {
     const cat_url = `${this.categorias_url}?oauth_token=${this.config.fsq_token}&v=${Date.now()}`;
     return this.http.get<CategoriasResponse>(cat_url);
+  }
+
+  local_getCategories() {
+    const categorias: Categoria[] = JSON.parse(sessionStorage.getItem('fsq_categorias'));
+    return categorias;
+  }
+
+  local_saveCategories(_categorias) {
+    sessionStorage.setItem('fsq_categorias', JSON.stringify(_categorias));
   }
 
   // Configuración

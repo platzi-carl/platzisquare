@@ -22,9 +22,18 @@ export class ImportCategoryComponent implements OnInit {
     this.isLoading = true;
     this.categorias$ = [];
 
-    this.dbService.getCategories().subscribe((res) => {
-      this.categorias$ = res.response.categories;
-      this.isLoading = false;
-    });
+    //this.categorias$ = this.dbService.local_getCategories();
+console.log(this.dbService.local_getCategories());
+
+    // if(this.categorias$.length === 0) {
+    //   this.dbService.getCategories().subscribe((res) => {
+    //     this.categorias$ = res.response.categories;
+    //     this.dbService.local_saveCategories(res.response.categories);
+    //   });
+    // }
+    // else {
+    //   this.isLoading = false;
+    // }
+
   }
 }

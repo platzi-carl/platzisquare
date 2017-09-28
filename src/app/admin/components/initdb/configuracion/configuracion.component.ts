@@ -14,10 +14,11 @@ export class ConfiguracionComponent implements OnInit {
     private fb: FormBuilder,
     private dbService: InitDbService,
     private alertService: AlertService
-  ) { }
+  ) {
+    this.createForm();
+  }
 
   ngOnInit() {
-    this.createForm();
     this.form.setValue(this.dbService.config_get());
   }
 
