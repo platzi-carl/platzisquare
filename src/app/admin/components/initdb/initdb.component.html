@@ -1,0 +1,33 @@
+
+<h3 class="mt-2">Inicializar Base de datos.</h3>
+<p>He utilizado FourSquare para obtener lugares, al rededor de un lugar especifico.</p>
+<hr />
+
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="configuracion-tab" data-toggle="tab" href="#Configuracion" role="tab" aria-controls="Configuracion" aria-expanded="true">
+      <i class="fa fa-cog"></i> Configuracion
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="import-cat" data-toggle="tab" href="#Categorias" role="tab" aria-controls="Categorias">
+      <i class="fa fa-tag"></i> Importar Categorias
+    </a>
+  </li>
+  <li class="nav-item">
+      <a class="nav-link" id="import-venues" data-toggle="tab" href="#venues" role="tab" aria-controls="venues">
+        <i class="fa fa-map"></i> Importar Lugares
+      </a>
+    </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="Configuracion" role="tabpanel" aria-labelledby="configuracion-tab">
+      <pz-configuracion></pz-configuracion>
+  </div>
+  <div class="tab-pane fade" id="Categorias" role="tabpanel" aria-labelledby="import-cat">
+    <pz-import-category></pz-import-category>
+  </div>
+  <div class="tab-pane fade" id="venues" role="tabpanel" aria-labelledby="import-cat">
+      <pz-import-venues></pz-import-venues>
+    </div>
+</div>

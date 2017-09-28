@@ -1,3 +1,5 @@
+import { FirebaseApp } from 'angularfire2';
+
 import { Lugar } from '../core/models/Lugar';
 import { Categoria } from '../shared/models/categorias';
 import { Component, OnInit } from '@angular/core';
@@ -11,7 +13,6 @@ import { CategoriasDb } from '../../../db-seed';
   selector: 'pz-admin',
   template: `
     <router-outlet></router-outlet>
-    <button class="btn btn-secundary" (click)="inicializar_db()">Init DB</button>
   `,
   styles: []
 })
@@ -31,10 +32,10 @@ export class AdminComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
-    // initializeApp(firebaseConfig);
   }
 
   inicializar_db() {
+
     const cat_url = `${this.cat_api_url}?oauth_token=${this.token}&v=20170919`;
     this.http.get<Categoria[]>(cat_url).subscribe(categorias => {
       this.categorias = categorias;
@@ -48,6 +49,8 @@ export class AdminComponent implements OnInit {
 
       console.log('Agregando categoría...', cat.name);
       // Insertar categoría
+      console.log(cat);
+
       const catRef = categoriasRef.push({
         name: cat.name,
         pluralName: cat.pluralName,
@@ -65,17 +68,28 @@ export class AdminComponent implements OnInit {
       this.http.get<LugaresResponseFs>(url).subscribe((res) => {
         this.lugares = res.response.venues.map(LugaresFs.fromJson);
         let lugarRef = null;
+
+        console.log(this.lugares);
+
         this.lugares.forEach((lugar) => {
-          console.log('Agregado lugar ', lugar.name);
           lugarRef = lugaresRef.push({
-            name: lugar.name,
-            categories: lugar.categories,
-            location: lugar.location,
-            categoriaId: catRef.key
+            nombre: lugar.name,
+            distancia: lugar.location.distance,
+            isActive: true,
+            isPremium: false,
+            latitud: lugar.location.lat,
+            longitud: lugar.location.lng,
+            descripcion: 'N/A',
+            fechaCreado: Date.now(),
+            userId: '',
+            ciudad: lugar.location.city || 'N/A',
+            direccion: lugar.location.address || 'N/A',
+            categoriaId: catRef.key,
+            direccionFormat: lugar.location.formattedAddress || 'N/A'
           });
           lugaresKeysPorCategoria.push(lugarRef.key);
         });
-          console.log(lugarRef.key);
+
 
         // Nodo LugaresPorCategorias
         const association = database().ref('LugaresPorCategoria');
@@ -107,15 +121,16 @@ export class Category {
     public pluralName: string,
     public shortName: string,
     public icon: string,
-    public primary: boolean
+    public primary: boolean,
+    categories: Categoria[]
   ) {}
 
   static fromJsonList(array): Category[] {
     return array.map(LugaresFs.fromJson);
   }
 
-  static fromJson({id, name, pluralName, shortName, icon, primary }): Category {
-    return new Category(id, name, pluralName, shortName, icon, primary);
+  static fromJson({id, name, pluralName, shortName, icon, primary, categories }): Category {
+    return new Category(id, name, pluralName, shortName, icon, primary, categories);
   }
 }
 
@@ -154,4 +169,4 @@ export class LugaresFs {
   static fromJson({id, name, categories, location, stats }): LugaresFs {
     return new LugaresFs( id, name, categories, location, stats);
   }
-};
+}

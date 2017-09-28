@@ -21,7 +21,7 @@ export class LugaresService {
   // Obtiene lista de lugares
   // -------------------------------------------
   getAll(): Observable<Lugar[]> {
-    return this.afDB.list('lugares').map(Lugar.fromJsonList);
+    return this.afDB.list('Lugares').map(Lugar.fromJsonList);
   }
 
   // Obtiene datos de un lugar especifico

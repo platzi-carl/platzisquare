@@ -1,0 +1,64 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" >
+  <fieldset>
+    <legend>Firebase configuración</legend>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <input type="text" formControlName="apiKey" class="form-control" placeholder="Firebase API KEY">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <input type="text" formControlName="authDomain" class="form-control" placeholder="Firebase auth Domain">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <input type="text" formControlName="databaseURL" class="form-control" placeholder="Firebase Data Base URL">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <input type="text" formControlName="projectId" class="form-control" placeholder="Firebase Project Id">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <input type="text" formControlName="storageBucket" class="form-control" placeholder="Firebase Storage Bucket">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <input type="text" formControlName="messagingSenderId" class="form-control" placeholder="Firebase Messaging SenderId">
+        </div>
+      </div>
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>ForSquare configuración</legend>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <input type="text" formControlName="fsq_token" class="form-control" placeholder="FourSquare TOKEN">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <input type="text" formControlName="fsq_lat" class="form-control" placeholder="Latitud">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <input type="text" formControlName="fsq_lng" class="form-control" placeholder="Longitud">
+        </div>
+      </div>
+    </div>
+  </fieldset>
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary btn-green btn-block">
+      <i class="fa fa-save" aria-hidden="true"></i> Guardar
+    </button>
+  </div>
+</form>

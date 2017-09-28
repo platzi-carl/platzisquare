@@ -1,7 +1,6 @@
 
 export class Lugar {
   constructor(
-    public $key: string,
     public nombre: string,
     public distancia: number,
     public isActive: boolean,
@@ -9,11 +8,13 @@ export class Lugar {
     public latitud: number,
     public longitud: number,
     public descripcion: string,
-    public fechaCreado: Date,
+    public fechaCreado: number,
     public userId: string,
     public ciudad: string,
     public direccion: string,
-    public categoria: string
+    public categoriaId: string,
+    public direccionFormat: string[],
+    public $key?: string,
   ) {
   }
 
@@ -21,10 +22,9 @@ export class Lugar {
     return array.map(Lugar.fromJson);
   }
 
-  static fromJson({$key, nombre, distancia, isActive, isPremium, latitud,
-    longitud, descripcion, fechaCreado, userId, ciudad, direccion, categoria }): Lugar {
+  static fromJson({nombre, distancia, isActive, isPremium, latitud,
+    longitud, descripcion, fechaCreado, userId, ciudad, direccion, categoriaId, direccionFormat, $key }): Lugar {
     return new Lugar(
-      $key,
       nombre,
       distancia,
       isActive,
@@ -36,7 +36,9 @@ export class Lugar {
       userId,
       ciudad,
       direccion,
-      categoria
+      categoriaId,
+      direccionFormat,
+      $key
     );
   }
 }

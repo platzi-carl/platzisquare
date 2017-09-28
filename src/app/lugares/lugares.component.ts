@@ -2,7 +2,7 @@ import { forEach } from '@angular/router/src/utils/collection';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AngularFireDatabase } from 'angularfire2/database';
-import {database, initializeApp} from 'firebase';
+import {database} from 'firebase';
 
 @Component({
     selector: 'pz-lugares',

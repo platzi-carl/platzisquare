@@ -16,7 +16,7 @@
         </div>
         <ul class="list-group">
             <li class="list-group-item" *ngFor="let lugar of lugares$ ">
-                <a routerLink="lugares/detalle/{{lugar.$key}}">{{lugar.nombre}} - ({{lugar.ciudad}})</a>
+                <a routerLink="lugares/detalle/{{lugar.$key}}">{{lugar.nombre}} - ({{lugar?.ciudad}})</a>
             </li>
         </ul>
     </div>
