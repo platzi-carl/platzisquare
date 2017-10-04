@@ -20,9 +20,10 @@ export class ListaLugaresComponent implements OnInit {
     this.lat = 38.536366;
     this.lng = -0.132404;
 
-    this.lugaresService.getAll().subscribe((result) => {
-      console.log(result);
-      this.lugares$ = result;
+    this.lugaresService.getAll().subscribe( data => {
+      this.lugares$ = data;
+      console.log(data);
+
     });
   }
 

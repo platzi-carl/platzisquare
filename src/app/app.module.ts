@@ -13,13 +13,14 @@ import { CoreModule } from './core/core.module';
 import { AppComponent } from './app.component';
 import { AuthService } from './core/services/auth.service';
 import { NotfoundComponent } from './core/components/notfound/notfound.component';
+import { AuthGuard } from './core/services/guard.service';
 
 
 // Configuración de rutas principales de la aplicación
 // --------------------------------------------------------------------
 const routes: Routes = [
   { path: '', loadChildren: './layout/layout.module#LayoutModule'},
-  { path: 'admin', loadChildren: './admin/admin.module#AdminModule'},
+  { path: 'admin', loadChildren: './admin/admin.module#AdminModule', canActivate: [AuthGuard]},
   { path: '**', pathMatch: 'full', component: NotfoundComponent }
 ];
 

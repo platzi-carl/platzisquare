@@ -1,23 +1,23 @@
 <div class="Lugares">
-    <agm-map [latitude]="lat" [longitude]="lng">
-        <agm-marker *ngFor="let lugar of  lugares$" [latitude]="lugar.latitud" [longitude]="lugar.longitud"></agm-marker>
-    </agm-map>
+  <agm-map [latitude]="lat" [longitude]="lng">
+    <agm-marker *ngFor="let lugar of  lugares$" [latitude]="lugar.latitud" [longitude]="lugar.longitud"></agm-marker>
+  </agm-map>
 
-    <div class="content container-fluid">
-        <div class="row">
-          <div class="col">
-            <h1 class="col-sm-12">Lugares <small class="badge badge-secondary">{{ lugares$?.length }}</small></h1>
-          </div>
-          <div class="col text-right">
-            <a class="col-sm-4 btn btn-success" routerLink="lugares/nuevo">
-                <i class="fa fa-plus"></i> Nuevo lugar
-            </a>
-          </div>
-        </div>
-        <ul class="list-group">
-            <li class="list-group-item" *ngFor="let lugar of lugares$ ">
-                <a routerLink="lugares/detalle/{{lugar.$key}}">{{lugar.nombre}} - ({{lugar?.ciudad}})</a>
-            </li>
-        </ul>
+  <div class="content container-fluid">
+    <div class="row">
+      <div class="col">
+        <h1 class="col-sm-12">Lugares <small class="badge badge-secondary">{{ lugares$?.length }}</small></h1>
+      </div>
+      <div class="col text-right">
+        <a class="col-sm-4 btn btn-success" routerLink="lugares/nuevo">
+            <i class="fa fa-plus"></i> Nuevo lugar
+        </a>
+      </div>
     </div>
+    <ul class="list-group">
+        <li class="list-group-item" *ngFor="let lugar of lugares$">
+            <a routerLink="lugares/detalle/{{lugar.$key}}">{{lugar.nombre}} - ({{lugar?.ciudad}})</a>
+        </li>
+    </ul>
+  </div>
 </div>

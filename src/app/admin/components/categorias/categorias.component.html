@@ -1,55 +1,63 @@
-<h3 *ngIf="categorias">Categorías</h3>
-
-<h4 *ngIf="!categorias" class="text-center">Cargando categorías...</h4>
-
-<table class="table table-bordered table-hover table-sm" *ngIf="categorias && categorias.length">
-  <thead>
-    <tr *ngIf="showCategoryForm">
-      <th colspan="4">
-        <form id="catForm" (ngSubmit)="onSubmit()">
-          <div class="row">
-            <div class="col">
-              <div class="input-group">
-                <input type="text" [(ngModel)]="categoria.name" name="name" class="form-control" placeholder="Nombre categoría">
-                <span class="input-group-addon">
-                      <label for="isActive">¿activa? </label>
-                      <input type="checkbox" name="isActive" id="isActive" [(ngModel)]="categoria.isActive">
-                    </span>
-              </div>
-            </div>
-            <div class="col">
-              <div class="input-group">
-                <input [(ngModel)]="categoria.imageUrl" type="url" name="imageUrl" class="form-control" placeholder="Imagen url">
-                <span class="input-group-btn btn-group-lg">
-                      <button class="btn btn-success" type="submit"><i class="fa fa-check"></i></button>
-                      <button class="btn btn-danger" type="button" (click)="toggleForm(false)"><i class="fa fa-remove"></i></button>
-                    </span>
-              </div>
+<div class="Categorias-admin my-3">
+    <h4 *ngIf="!categorias" class="text-center">Cargando categorías...</h4>
+    <form id="catForm" (ngSubmit)="onSubmit()" *ngIf="showCategoryForm" >
+        <div class="row">
+          <div class="col">
+            <div class="input-group">
+              <input type="text" [(ngModel)]="categoria.name" name="name" class="form-control" placeholder="Nombre categoría">
+              <span class="input-group-addon">
+                    <label for="isActive">¿activa? </label>
+                    <input type="checkbox" name="isActive" id="isActive" [(ngModel)]="categoria.isActive">
+                  </span>
             </div>
           </div>
-        </form>
-      </th>
-    </tr>
-    <tr>
-      <th>Nombre</th>
-      <th>active</th>
-      <th>image</th>
-      <th width="50px">
-        <button *ngIf="!showCategoryForm" (click)="toggleForm(true)" class="btn btn-success btn-block"><i class="fa fa-plus"></i></button>
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let cat of categorias">
-      <td>{{cat.name}}</td>
-      <td><pz-on-of-label [categoria]="cat" (togglestte)="cambiarEstado($event)"></pz-on-of-label></td>
-      <td><img width="40px" src="{{cat.imageUrl}}" alt="{{cat.name}}"></td>
-      <td>
-        <div class="btn-group">
-          <button (click)="edita(cat)" class="btn btn-secundary btn-sm"><i class="fa fa-edit"></i></button>
-          <button class="btn btn-danger btn-sm" (click)="delete(cat.$key)"><i class="fa fa-trash"></i></button>
+          <div class="col">
+            <div class="input-group">
+              <input [(ngModel)]="categoria.imageUrl" type="url" name="imageUrl" class="form-control" placeholder="Imagen url">
+              <span class="input-group-btn btn-group-lg">
+                <button class="btn btn-success" type="submit"><i class="fa fa-check"></i></button>
+                <button class="btn btn-danger" type="button" (click)="toggleForm(false)"><i class="fa fa-remove"></i></button>
+              </span>
+            </div>
+          </div>
         </div>
-      </td>
-    </tr>
-  </tbody>
-</table>
+      </form>
+
+    <div class="lista_categorias" *ngIf="categorias && categorias.length">
+      <h3>Categorías</h3>
+      <table class="table table-bordered table-hover table-sm">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>active</th>
+            <th>image</th>
+            <th width="50px">
+              <button *ngIf="!showCategoryForm" (click)="toggleForm(true)" class="btn btn-success btn-block"><i class="fa fa-plus"></i></button>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let cat of categorias">
+            <td>{{cat.name}}</td>
+            <td><pz-on-of-label [categoria]="cat" (togglestate)="cambiarEstado($event)"></pz-on-of-label></td>
+            <td><img width="40px" src="{{cat.imageUrl}}" alt="{{cat.name}}"></td>
+            <td>
+              <div class="btn-group">
+                <button (click)="edita(cat)" class="btn btn-secundary btn-sm"><i class="fa fa-edit"></i></button>
+                <button class="btn btn-danger btn-sm" (click)="delete(cat.$key)"><i class="fa fa-trash"></i></button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+    <div class="text-center" *ngIf="categorias && categorias.length === 0 && !showCategoryForm">
+      <h4>No hay categorías que mostrar.</h4>
+      <button class="btn btn-success" (click)="toggleForm(true)">
+        <i class="fa fa-plus"></i> Nueva categoría
+      </button>
+    </div>
+
+</div>

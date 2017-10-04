@@ -2,7 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
-import { Categoria, CategoriasResponse } from './models/categoria';
+import { CategoriasResponse, Categoria } from './models/categoria';
+import { environment, firebaseConfig } from '../../../../environments/environment';
+import { AlertService } from '../../../shared/services/alert.service';
 
 @Injectable()
 export class InitDbService {
@@ -11,22 +13,25 @@ export class InitDbService {
   lugares_url: string;
   categorias_url: string;
 
-  constructor(private http: HttpClient) {
+  constructor(private alert: AlertService, private http: HttpClient) {
     this.config_prefix = 'db_configuracion';
+
+    if(!firebaseConfig.apiKey) {
+      this.alert.warning('Para usar el importador, debes editar el archivo: <strong>/src/environments/environment.ts</strong>');
+    }
+
     this.config = this.config_get() || {
-      apiKey: 'AIzaSyAWDZjMI2YgwcGzkuRJvAQM2p_7J7SPRos',
-      authDomain: 'gpolanco-plazisquare.firebaseapp.com',
-      databaseURL: 'https://gpolanco-plazisquare.firebaseio.com',
-      projectId: 'gpolanco-plazisquare',
-      storageBucket: 'gpolanco-plazisquare.appspot.com',
-      messagingSenderId: '557075038146',
-      fsq_token: '51LI3TEMLPQVIENBCPZEKGMRCARDEMLPUCTVKCRZCVA3XAEG',
+      apiKey: firebaseConfig.apiKey,
+      authDomain: firebaseConfig.authDomain,
+      databaseURL: firebaseConfig.databaseURL,
+      projectId: firebaseConfig.projectId,
+      storageBucket: firebaseConfig.storageBucket,
+      messagingSenderId: firebaseConfig.messagingSenderId,
+      fsq_token: environment.FORSQUERE_TOKEN,
       fsq_lat: '38.5374062',
       fsq_lng: '-0.147505'
     };
     this.init_config();
-
-    console.log(this.config);
 
     this.lugares_url = 'https://api.foursquare.com/v2/venues/search';
     this.categorias_url = 'https://api.foursquare.com/v2/venues/categories/';

@@ -18,7 +18,5 @@ export class InitdbComponent implements OnInit {
   // Obtiene listado de lugares
   // -------------------------------------
   getVenues(categoria_id: string) {
-    // const url = `${this.lugares_url}?ll=${this.lat},${this.lng}&limit=20
-    //               &categoryId=${cat.id}&oauth_token=${this.token}&v=20170919`;
   }
 }

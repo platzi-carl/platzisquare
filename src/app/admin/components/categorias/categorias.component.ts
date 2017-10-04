@@ -4,7 +4,8 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 
 import { CategoriasService } from '../../services/categorias.service';
-import { Categoria } from '../../../shared/models/categorias';
+import { Categoria } from '../initdb/models/categoria';
+
 
 @Component({
   selector: 'pz-categorias',
@@ -21,11 +22,9 @@ export class CategoriasComponent implements OnInit {
 
   ngOnInit() {
     this.showCategoryForm = false;
-    this.categoria = new Categoria();
 
     this.categoriaService.get().subscribe((data) => {
       this.categorias = data;
-      console.log(data);
     });
   }
 
@@ -45,7 +44,7 @@ export class CategoriasComponent implements OnInit {
         this.alert.success(`<strong>OK:</strong> Categoria <strong>${this.categoria.name}</strong> añadida correctamente.`);
       }
 
-      this.categoria = new Categoria();
+      this.categoria = null;
       this.showCategoryForm = false;
     }
   }
@@ -68,12 +67,14 @@ export class CategoriasComponent implements OnInit {
 
   toggleForm(show) {
     this.showCategoryForm = show;
-    this.categoria = new Categoria();
+    this.categoria = new Categoria('', '', '', '', '',  null, false, null, true);
   }
 
   cambiarEstado(categoria: Categoria) {
+    console.log('activar categoria', categoria);
+
     let cat = Object.assign({}, categoria);
-    cat.isActive = !categoria.isActive;
+    cat.isActive = categoria.isActive = !categoria.isActive;
     this.categoriaService.editar(cat);
   }
 }

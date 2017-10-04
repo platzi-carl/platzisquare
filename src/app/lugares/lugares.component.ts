@@ -1,83 +1,97 @@
-import { forEach } from '@angular/router/src/utils/collection';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+
 import { AngularFireDatabase } from 'angularfire2/database';
 import {database} from 'firebase';
+import { environment } from '../../environments/environment';
 
 @Component({
     selector: 'pz-lugares',
-    template: `<pz-listado-lugares></pz-listado-lugares>
-    <button class="btn btn-secundary" (click)="insertar_categorias()">Cargar categorías</button>
-    `
+    template: `<pz-listado-lugares></pz-listado-lugares>`
 })
 
 export class LugaresComponent implements OnInit {
   api_url   = 'https://api.foursquare.com/v2/venues/search';
-  token     = '51LI3TEMLPQVIENBCPZEKGMRCARDEMLPUCTVKCRZCVA3XAEG';
+  token     = environment.FORSQUERE_TOKEN;
   query_url = '';
   lat       = 38.5374062;
   lng       = -0.147505;
-  limit     = 30;
+  limit     = 5;
   catId     = '4d4b7105d754a06374d81259';
+  categorias= [
+    '4d4b7105d754a06372d81259', '4d4b7104d754a06370d81259',
+    '4d4b7105d754a06373d81259', '4d4b7105d754a06374d81259',
+    '4d4b7105d754a06376d81259', '4d4b7105d754a06377d81259',
+    '4d4b7105d754a06375d81259', '4e67e38e036454776db1fb3a',
+    '4d4b7105d754a06378d81259', '4d4b7105d754a06379d81259'
+  ];
   url       = '';
   data: LugaresFs;
   lugares: Array<LugaresFs>;
 
+  categoriasRef = database().ref('Categorias');
+  lugaresRef    = database().ref('Lugares');
+
     constructor(private http: HttpClient,  private _afdb: AngularFireDatabase) { }
 
     ngOnInit() {
-      // tslint:disable-next-line:max-line-length
-      this.url = `${this.api_url}?ll=${this.lat},${this.lng}&limit=${this.limit}&categoryId=${this.catId}&oauth_token=${this.token}&v=20170919`;
-
-      this.http.get<LugaresResponseFs>(this.url)
-          .subscribe((res) => {
-            this.lugares = res.response.venues.map(LugaresFs.fromJson);
-          });
-
-          // console.log(lugaresRef.push({name: 'prueba'}));
 
     }
 
-    insertar_categorias() {
+    async insertar_categorias() {
+      const lugaresKey    = [];
 
-      const categoriasRef     = database().ref('LugarPorCategoria');
-      const subCategoriasRef  = database().ref('SubCategorias');
-
-      const lugaresRef = database().ref('lugares');
-      const lugaresKey = [];
-
-      this.lugares.forEach((lugar) => {
-        lugar.categories.forEach((cat) => {
-          categoriasRef.push({
-            id: cat.id,
-            nombre: cat.name,
-            nombreCorto: cat.shortName
+      this.categorias.forEach((cat_id) => {
+        this.url = `${this.api_url}?ll=${this.lat},${this.lng}&limit=${this.limit}&categoryId=${cat_id}&oauth_token=${this.token}&v=20170919`;
+        this.http.get<LugaresResponseFs>(this.url).subscribe((res) => {
+          this.lugares = res.response.venues.map(LugaresFs.fromJson);
+          this.lugares.forEach(lugar => {
+            this.insertarLugar(lugar);
           });
         });
-
-        const lugarRef = lugaresRef.push({
-          id: lugar.id,
-          nombre: lugar.name,
-          latitud: lugar.location.lat,
-          longitud: lugar.location.lng,
-          direccion: lugar.location.formattedAddress || '',
-          distancia: lugar.location.distance,
-          isActive: true,
-          isPremium: true,
-          descripcion: '',
-          fechaCreado: Date.now(),
-          ciudad: lugar.location.city || '',
-          poblacion: lugar.location.country || '',
-          categoria: lugar.categories[0].name,
-        });
-
-        lugaresKey.push(lugarRef.key);
 
       });
-      console.log(lugaresKey);
     }
 
+    async getLugaresByCategorias(cat_id) {
+      // tslint:disable-next-line:max-line-length
+      this.url = `${this.api_url}?ll=${this.lat},${this.lng}&limit=${this.limit}&categoryId=${cat_id}&oauth_token=${this.token}&v=20170919`;
 
+      this.http.get<LugaresResponseFs>(this.url)
+      .subscribe((res) => {
+        console.log(res);
+        
+        this.lugares = res.response.venues.map(LugaresFs.fromJson);
+      });
+    }
+
+    insertarLugar(lugar) {
+      let category;
+
+      lugar.categories.forEach((cat) => {
+        category = this.categoriasRef.push({
+          id: cat.id,
+          nombre: cat.name,
+          nombreCorto: cat.shortName
+        });
+      });
+
+      const lugarRef = this.lugaresRef.push({
+        id: lugar.id,
+        nombre: lugar.name,
+        latitud: lugar.location.lat,
+        longitud: lugar.location.lng,
+        direccion: lugar.location.formattedAddress || '',
+        distancia: lugar.location.distance,
+        isActive: true,
+        isPremium: true,
+        descripcion: '',
+        fechaCreado: Date.now(),
+        ciudad: lugar.location.city || '',
+        poblacion: lugar.location.country || '',
+        categoria: lugar.categories[0].name,
+      });
+    }
 }
 
 export class LugaresResponseFs {

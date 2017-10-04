@@ -22,7 +22,7 @@ export class DetalleComponent implements OnInit {
 
     this.lugaresServices.getLugar(id)
         .subscribe((lugar) => {
-
+          console.log(lugar);
           this.lugar  = lugar;
           this.lat    = this.lugar.latitud;
           this.lng    = this.lugar.longitud;

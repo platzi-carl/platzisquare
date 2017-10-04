@@ -5,6 +5,16 @@
 
 export const environment = {
   production: false,
-  API_ENDPOINT: 'https://gpolanco-plazisquare.firebaseio.com/',
-  MAP_KEY: 'AIzaSyC1FeIUGSfacoxZcogVKMRmdZPrAu7QDyU'
+  API_ENDPOINT: '',
+  MAP_KEY: '',
+  FORSQUERE_TOKEN: ''
+};
+
+export const firebaseConfig = {
+  apiKey: '',
+  authDomain: '',
+  databaseURL: '',
+  projectId: '',
+  storageBucket: '',
+  messagingSenderId: ''
 };

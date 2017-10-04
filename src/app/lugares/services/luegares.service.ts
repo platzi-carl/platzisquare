@@ -27,7 +27,8 @@ export class LugaresService {
   // Obtiene datos de un lugar especifico
   // -------------------------------------------
   getLugar(id: string): Observable<Lugar> {
-    return this.afDB.object(`${this.api_endpoint}lugares/${id}`);
+    console.log(id);
+    return this.afDB.object(`${this.api_endpoint}Lugares/${id}`).map(Lugar.fromJson);
   }
 
   // Crea un nuevo lugar en la base de datos
@@ -42,7 +43,6 @@ export class LugaresService {
     direccion = `${direccion.calle},${direccion.ciudad}, ${direccion.pais}`;
     return this.http.get<ItemsResponse>(`http://maps.google.com/maps/api/geocode/json?address=${direccion}`);
   }
-
 }
 
 interface ItemsResponse {

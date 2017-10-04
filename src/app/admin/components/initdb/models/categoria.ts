@@ -2,20 +2,23 @@ import { LugarFs } from './lugar';
 
 export class Categoria {
   constructor(
+    public $key: string,
     public id: string,
     public name: string,
     public pluralName: string,
     public shortName: string,
     public icon: Icon,
     public primary: boolean,
-    public categories: Categoria[]
+    public categories: Categoria[],
+    public isActive?: boolean,
   ) {}
 
   static fromJsonList(array): Categoria[] {
-    return array.map(LugarFs.fromJson);
+    return array.map(Categoria.fromJson);
   }
 
   static fromJson({
+    $key,
     id,
     name,
     pluralName,
@@ -25,6 +28,7 @@ export class Categoria {
     categories
   }): Categoria {
     return new Categoria(
+      $key,
       id,
       name,
       pluralName,

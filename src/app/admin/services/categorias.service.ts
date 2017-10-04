@@ -1,13 +1,15 @@
-import { HttpClient } from '@angular/common/http';
-import { firebaseConfig } from '../../../environments/firebase.config';
-import { Observable } from 'rxjs/Rx';
 import { Inject, Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 
 import { AngularFireDatabase } from 'angularfire2/database';
 import { database } from 'firebase';
-import { Categoria } from '../../shared/models/categorias';
 import { FirebaseApp } from 'angularfire2';
-import { Subject } from 'rxjs/Subject';
+
+import { Categoria } from '../components/initdb/models/categoria';
+import { firebaseConfig } from '../../../environments/environment';
 
 @Injectable()
 export class CategoriasService {
@@ -25,11 +27,10 @@ export class CategoriasService {
     return this.db
       .list('Categorias')
       .do(console.log)
-      .map(Categoria.fromJsonLArray);
+      .map(Categoria.fromJsonList);
   }
 
   editar(cat: any) {
-    console.log('Editando cat: ', cat.isActive);
     this.db.database.ref(`Categorias/${cat.$key}`).set({
       name: cat.name,
       descripcion: cat.descripcion || '',
@@ -37,13 +38,17 @@ export class CategoriasService {
       isActive: cat.isActive,
     });
   }
+
   save(cat: any) {
-    this.db.database.ref('Categorias').push({
-      name: cat.name,
-      descripcion: cat.descripcion || null,
-      imagenUrl: cat.imagenUrl || null,
-      isActive: cat.isActive,
-    });
+    this.db.database.ref('Categorias').push(cat);
+  }
+
+  async saveCategorias(categorias: Categoria[]) {
+    if (categorias && categorias.length > 0) {
+      await categorias.forEach(cat => {
+        this.save(cat);
+      });
+    }
   }
 
   delete(categoriaId: string): Observable<any> {

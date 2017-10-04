@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --env=prod --environment=prod --outputHashing",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
@@ -44,6 +44,7 @@
     "@angular/language-service": "^4.2.4",
     "@types/jasmine": "~2.5.53",
     "@types/jasminewd2": "~2.0.2",
+    "@types/lodash": "^4.14.76",
     "@types/node": "~6.0.60",
     "codelyzer": "~3.1.1",
     "jasmine-core": "~2.6.2",

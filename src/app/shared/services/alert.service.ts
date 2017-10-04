@@ -17,7 +17,7 @@ export class AlertService {
                   this.keepAfterRouteChange = false;
               } else {
                   // clear alert messages
-                  this.clear();
+                  this.clear(false);
               }
           }
       });
@@ -27,32 +27,41 @@ export class AlertService {
       return this.subject.asObservable();
   }
 
-  success(mensaje: string, keepAfterRouteChange = false) {
+  success(mensaje: string, isAutoClose = true, keepAfterRouteChange = false) {
     console.log('alert success');
     this.alert(TipoAlert.Success, mensaje, keepAfterRouteChange);
   }
 
-  danger(mensaje: string, keepAfterRouteChange = false) {
+  danger(mensaje: string, isAutoClose = true, keepAfterRouteChange = false) {
     this.alert(TipoAlert.Error, mensaje, keepAfterRouteChange);
   }
 
-  info(mensaje: string, keepAfterRouteChange = false) {
+  info(mensaje: string, isAutoClose = true, keepAfterRouteChange = false) {
     this.alert(TipoAlert.Info, mensaje, keepAfterRouteChange);
   }
 
-  warning(mensaje: string, keepAfterRouteChange = false) {
+  warning(mensaje: string, isAutoClose = true, keepAfterRouteChange = false) {
     this.alert(TipoAlert.Warning, mensaje, keepAfterRouteChange);
   }
 
-  alert(tipo: TipoAlert, mensaje: string, keepAfterRouteChange = false) {
-    this.clear();
+  alert(tipo: TipoAlert, mensaje: string, isAutoClose = true, keepAfterRouteChange = false) {
+    this.clear(false);
+
     this.keepAfterRouteChange = keepAfterRouteChange;
     this.subject.next(<Alert>{ tipo: tipo, mensaje: mensaje });
+    this.clear(true);
   }
 
-  clear() {
+  clear(autoclose) {
+    let $this = this;
     // clear alerts
-    this.subject.next();
+    if (autoclose) {
+      setTimeout(function() {
+        $this.subject.next();
+      }, 4000);
+    } else {
+      $this.subject.next();
+    }
   }
 }
 

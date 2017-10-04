@@ -1,7 +1,8 @@
-import { AlertService } from '../../../../shared/services/alert.service';
-import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+
 import { InitDbService } from '../initdb.service';
+import { AlertService } from '../../../../shared/services/alert.service';
 
 @Component({
   selector: 'pz-configuracion',
