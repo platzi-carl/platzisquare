@@ -1,5 +1,62 @@
 # PlatziSquare
+[Demo Online](https://gpolanco-plazisquare.firebaseapp.com/)
 
+Hola, este es el resultado de la practica realizada durante el curso de **Angular 4** en [platzi.com](https://platzi.com/cursos/angular/)
+
+No está finalizada, pero me ha servido para aprender lo necesario para crear una aplicación real.
+
+### Estructura de la aplicación
+He utilizado módulos para organizar la aplicación y cargarlos utilizando lazy loading. 
+```bash
+admin
+  ├── admin-routing.module.ts
+  ├── admin.component.ts
+  ├── admin.module.ts
+  ├── components
+  └── services
+core
+  ├── models
+  ├── services
+  ├── components
+  └── core.module.ts
+layout
+  ├── main-content
+  ├── main-footer
+  ├── main-header
+  ├── layout.component.ts
+  └── layout.module.ts
+lugares
+  ├── components
+  ├── models
+  ├── services
+  ├── lugares.component.ts
+  └── lugares.module.ts
+shared
+  ├── components
+  ├── models
+  ├── services
+  └── shared.module.ts
+  
+├── app.component.html
+├── app.component.ts
+├── app.module.ts
+```
+
+### Poner en Marcha
+Para poner en marcha la aplicación sigue los siguientes pasos:
+
+* 1 Clona el repositorio: `git clone https://github.com/gpolanco/platzisquare.git`
+* 2 Edita el archivo `/src/environments/environment.ts` y completa el objeto de configuración de **firebase**.
+* 3 Instala las dependencias `npm install`
+* 4 Ejecutar la aplicación `ng server`
+
+### Detalle sobre la estructura de módulos
+Si quieres saber más sobre la [estructura basada en módulos](https://www.gpolanco.com/configurar-aplicacion-angular-4-basada-modulo/) de una aplicación angular, puedes revisar [este tutorial](https://www.gpolanco.com/configurar-aplicacion-angular-4-basada-modulo/).
+
+Espero viendo el código, te aclare algunas dudas si las tienes.
+
+
+### =====================================================================
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.1.
 
 ## Development server
